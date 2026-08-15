@@ -36,6 +36,11 @@ const handleSubmit = (e) => {
   const formData = new FormData(e.currentTarget);
   const personData = Object.fromEntries(formData.entries());
 
+  // Convert amount to 2 decimal places
+  if (personData.amount) {
+    personData.amount = Number(personData.amount).toFixed(2);
+  }
+
   setPersons((previousPersons) => {
     const updatedPersons = [
       ...previousPersons,
@@ -535,6 +540,9 @@ setPersons(() => {
                   type="number"
                   id="swastyayani"
                   name="swastyayani"
+                  step="0.01"
+                  min="0"
+                  max={3}
                   placeholder="Enter amount"
                   min="0"
                 />
@@ -549,6 +557,8 @@ setPersons(() => {
                   type="number"
                   id="istabhriti"
                   name="istabhriti"
+                  step="0.01"
+                  min="0"
                   placeholder="Enter amount"
                   min="0"
                 />
@@ -563,6 +573,8 @@ setPersons(() => {
                   type="number"
                   id="acharyaBhriti"
                   name="acharyaBhriti"
+                  step="0.01"
+                  min="0"
                   placeholder="Enter amount"
                   min="0"
                 />
@@ -577,6 +589,8 @@ setPersons(() => {
                   type="number"
                   id="dakshina"
                   name="dakshina"
+                  step="0.01"
+                  min="0"
                   placeholder="Enter amount"
                   min="0"
                 />
@@ -591,6 +605,8 @@ setPersons(() => {
                   type="number"
                   id="sangathani"
                   name="sangathani"
+                  step="0.01"
+                  min="0"
                   placeholder="Enter amount"
                   min="0"
                 />
@@ -605,6 +621,8 @@ setPersons(() => {
                   type="number"
                   id="anandabazar"
                   name="anandabazar"
+                  step="0.01"
+                  min="0"
                   placeholder="Enter amount"
                   min="0"
                 />
@@ -619,6 +637,8 @@ setPersons(() => {
                   type="number"
                   id="pranami"
                   name="pranami"
+                  step="0.01"
+                  min="0"
                   placeholder="Enter amount"
                   min="0"
                 />
@@ -633,6 +653,8 @@ setPersons(() => {
                   type="number"
                   id="ritwiki"
                   name="ritwiki"
+                  step="0.01"
+                  min="0"
                   placeholder="Enter amount"
                   min="0"
                 />
@@ -647,6 +669,8 @@ setPersons(() => {
                   type="number"
                   id="srimandir"
                   name="srimandir"
+                  step="0.01"
+                  min="0"
                   placeholder="Enter amount"
                   min="0"
                 />

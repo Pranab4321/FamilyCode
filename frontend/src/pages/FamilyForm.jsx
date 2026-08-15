@@ -6,6 +6,17 @@ const FamilyForm = () => {
 const navigate = useNavigate();
 const [selectedValue, setSelectedValue] = useState("");
 
+const [pincode, setPincode] = useState("");
+const [formDatas, setFormDatas] = useState({
+  pincode: "",
+  district: "",
+  state: "",
+  city: "",
+  postOffice: "",
+});
+  
+const [postOffices, setPostOffices] = useState([]);
+
 const handleSubmit = (e) => {
   e.preventDefault();
 
@@ -22,6 +33,62 @@ const handleSubmit = (e) => {
   // If using React Router:
   navigate("/istabhrity");
 };
+
+const handlePincodeChange = async (e) => {
+  const pincode = e.target.value;
+
+  setPincode(pincode);
+
+  if (pincode.length === 6) {
+    try {
+      const response = await fetch(
+        `https://api.postalpincode.in/pincode/${pincode}`
+      );
+
+      const data = await response.json();
+
+      // console.log("Api datas are", data);
+
+      if (data[0].Status === "Success") {
+
+        // Store all post offices
+        setPostOffices(data[0].PostOffice);
+
+        // Get state from first result
+        const postOffice = data[0].PostOffice[0];
+
+        setFormDatas((previous) => ({
+          ...previous,
+          state: postOffice.State,
+        }));
+
+      } else {
+        setPostOffices([]);
+
+        setFormDatas((previous) => ({
+          ...previous,
+          district: "",
+          state: "",
+          city: "",
+        }));
+      }
+
+    } catch (error) {
+      console.log("PIN API Error:", error);
+      setPostOffices([]);
+    }
+  } else {
+    setPostOffices([]);
+  }
+};
+
+const districts = [
+  ...new Set(
+    postOffices.map((postOffice) => postOffice.District)
+  ),
+];
+
+console.log("Api datas are", districts);
 
   return (
     <div className="family-form-page">
@@ -67,6 +134,7 @@ const handleSubmit = (e) => {
                 type="text"
                 id="familyCode"
                 name="familyCode"
+                maxLength={12}
                 placeholder="Enter family code"
                 required
               />
@@ -92,39 +160,6 @@ const handleSubmit = (e) => {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="district">District *</label>
-                <input
-                  type="text"
-                  id="district"
-                  name="district"
-                  placeholder="Enter district"
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="postOffice">Post Office *</label>
-                <input
-                  type="text"
-                  id="postOffice"
-                  name="postOffice"
-                  placeholder="Enter post office"
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="state">State *</label>
-                <input
-                  type="text"
-                  id="state"
-                  name="state"
-                  placeholder="Enter state"
-                  required
-                />
-              </div>
-
               <div className="form-group pin-group">
                 <label htmlFor="pinCode">PIN Code *</label>
                 <input
@@ -134,6 +169,64 @@ const handleSubmit = (e) => {
                   placeholder="6-digit PIN"
                   maxLength="6"
                   pattern="[0-9]{6}"
+                  onChange={handlePincodeChange}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+              <label htmlFor="district">District</label>
+              <select
+                value={formDatas.district}
+                onChange={(e) =>
+                  setFormDatas((previous) => ({
+                    ...previous,
+                    district: e.target.value,
+                  }))
+                }
+              >
+                <option value="">Select District</option>
+                {districts.map((district, index) => (
+                  <option key={index} value={district}>
+                    {district}
+                  </option>
+                ))}
+              </select>
+
+              </div>
+
+
+              <div className="form-group">
+               <label htmlFor="postOffice">Post Office *</label>
+
+                <select
+                  name="postOffice"
+                  value={formDatas.postOffice || ""}
+                  onChange={(e) =>
+                    setFormDatas((previous) => ({
+                      ...previous,
+                      postOffice: e.target.value,
+                    }))
+                  }
+                >
+                  <option value="">Select Post Office</option>
+
+                  {postOffices.map((postOffice, index) => (
+                    <option key={index} value={postOffice.Name}>
+                      {postOffice.Name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="state">State *</label>
+                <input
+                  type="text"
+                  id="state"
+                  name="state"
+                  value={formDatas.state}
+                  placeholder="Enter state"
                   required
                 />
               </div>
