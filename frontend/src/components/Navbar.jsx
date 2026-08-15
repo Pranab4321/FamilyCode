@@ -7,13 +7,13 @@ const Navbar = ({generatePDF}) => {
       <div className="navbar-container">
 
         {/* Logo / Brand */}
-        <Link to="/" className="navbar-brand">
+        <Link className="navbar-brand">
           Istabhrity
         </Link>
 
         {/* Navigation */}
         <div className="navbar-links">
-          <Link to="/istabhrity" className="navbar-link">
+          <Link to="/" className="navbar-link">
             Home
           </Link>
 

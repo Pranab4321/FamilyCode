@@ -9,9 +9,15 @@ import Navbar from "../components/Navbar";
 const IstabhrityForm = () => {
 
 const [familyData, setFamilyData] = useState(null);
-const [persons, setPersons] = useState([]);
+
+const [persons, setPersons] = useState(() => {
+  const savedPersons = localStorage.getItem("persons");
+
+  return savedPersons ? JSON.parse(savedPersons) : [];
+});
+
 const selectedValue = localStorage.getItem("selectedValue");
-const navigate = useNavigate()
+const navigate = useNavigate();
 
   useEffect(() => {
     const savedData = localStorage.getItem("currentFamily");
@@ -28,32 +34,30 @@ const handleSubmit = (e) => {
   e.preventDefault();
 
   const formData = new FormData(e.currentTarget);
-
   const personData = Object.fromEntries(formData.entries());
 
-  // Add current person's data to the array
   setPersons((previousPersons) => {
     const updatedPersons = [
-    ...previousPersons,
-    personData,
-  ]
+      ...previousPersons,
+      personData
+    ];
 
-  // set to local storage 
-  localStorage.setItem(
-    "persons",
-    JSON.stringify(updatedPersons)
-  );
+    localStorage.setItem(
+      "persons",
+      JSON.stringify(updatedPersons)
+    );
 
-  return updatedPersons;
-});
+    console.log("Updated array:", updatedPersons);
 
-  console.log("Current person:", persons);
+    return updatedPersons;
+  });
 
-  
-
-  // Reset the form for the next person
   e.currentTarget.reset();
 };
+
+useEffect(()=>{
+  console.log("Person updated ", persons);
+},[persons])
 
 const generatePDF = () => {
   if (persons.length === 0) {
@@ -334,6 +338,12 @@ const generatePDF = () => {
   doc.save(
     `${familyData?.familyCode || "family"}-details.pdf`
   );
+
+setPersons(() => {
+  const savedPersons = localStorage.removeItem("persons");
+
+  return savedPersons ? JSON.parse(savedPersons) : [];
+});
 
   navigate("/");
 };

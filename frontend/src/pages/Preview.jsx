@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const Preview = () => {
   const [persons, setPersons] = useState([]);
+  // const {navigate} = useNavigate();
 
   useEffect(() => {
     const savedPersons = localStorage.getItem("persons");
@@ -12,9 +15,9 @@ const Preview = () => {
     }
   }, []);
 
+
   return (
     <>
-    <Navbar/>
     <div className="preview-page">
 
       {/* Header */}
@@ -23,6 +26,13 @@ const Preview = () => {
           <h1>Preview</h1>
           <p>Review all submitted Istabhrity details</p>
         </div>
+
+        <Link to="/istabhrity">
+        <button className="navbar-pdf-btn">
+          Go Back
+        </button>
+        </Link>
+        
 
         <div className="person-count">
           <span>{persons.length}</span>
