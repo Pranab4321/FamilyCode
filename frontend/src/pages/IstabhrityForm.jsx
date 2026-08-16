@@ -706,10 +706,11 @@ setPersons(() => {
         ✓
       </div>
 
-      <h2>Member Added Successfully!</h2>
-
+      <h2>Done!</h2>
+      <h2>Check Preview &</h2>
+      <h2>Fill up new details</h2>
       <p>
-        The member details have been saved successfully.
+        Member added successfully.
       </p>
 
       <button
