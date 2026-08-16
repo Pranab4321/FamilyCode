@@ -124,8 +124,8 @@ console.log("Api datas are", districts);
                 required
               >
                 <option value="">Select</option>
-                <option value="yes">Old F/C</option>
-                <option value="no">New F/C</option>
+                <option value="yes">YES</option>
+                <option value="no">NO (Create One)</option>
               </select>
             </div>
 
