@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar";
 const IstabhrityForm = () => {
 
 const [familyData, setFamilyData] = useState(null);
+const [showSuccess, setShowSuccess] = useState(false);
 
 const [persons, setPersons] = useState(() => {
   const savedPersons = localStorage.getItem("persons");
@@ -57,10 +58,13 @@ const handleSubmit = (e) => {
     return updatedPersons;
   });
 
-  alert("CHECK PREVIEW OR ENTER A NEW MEMBER DETAILS.")
+  // Show success popup
+  setShowSuccess(true);
 
+  // Reset form
   e.currentTarget.reset();
 };
+
 
 useEffect(()=>{
   console.log("Person updated ", persons);
@@ -694,7 +698,35 @@ setPersons(() => {
 
 </div>
 
+{showSuccess && (
+  <div className="success-overlay">
+    <div className="success-modal">
 
+      <div className="success-icon">
+        ✓
+      </div>
+
+      <h2>Member Added Successfully!</h2>
+
+      <p>
+        The member details have been saved successfully.
+      </p>
+
+      <button
+        onClick={() => {
+          setShowSuccess(false);
+
+          // Next task goes here
+          // Example:
+          // navigate("/preview");
+        }}
+      >
+        OK
+      </button>
+
+    </div>
+  </div>
+)}
     </>
   );
 };
