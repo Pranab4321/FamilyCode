@@ -451,8 +451,9 @@ setPersons(() => {
                   required
                 />
               </div>
-
-              <div className="form-group">
+            
+            {selectedValue === "yes" && 
+            <div className="form-group">
               <label htmlFor="familyCode">Is a new Member? *</label>
               <select
                 value={newMember}
@@ -464,6 +465,8 @@ setPersons(() => {
                 <option value="yes">New Member</option>
               </select>
             </div>
+            }
+            
               
               {selectedValue === "no" || newMember === "yes" && (
                 <>
