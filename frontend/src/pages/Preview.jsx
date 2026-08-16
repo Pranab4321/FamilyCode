@@ -24,7 +24,7 @@ const Preview = () => {
       <div className="preview-header">
         <div>
           <h1>Preview</h1>
-          <p>Review all submitted Istabhrity details</p>
+          {/* <p>Review all submitted Istabhrity details</p> */}
         </div>
 
         <Link to="/istabhrity">
