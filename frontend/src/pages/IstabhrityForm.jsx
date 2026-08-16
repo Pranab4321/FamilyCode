@@ -57,6 +57,8 @@ const handleSubmit = (e) => {
     return updatedPersons;
   });
 
+  alert("CHECK PREVIEW OR ENTER A NEW MEMBER DETAILS.")
+
   e.currentTarget.reset();
 };
 
