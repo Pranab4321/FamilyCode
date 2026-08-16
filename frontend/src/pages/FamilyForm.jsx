@@ -105,7 +105,7 @@ console.log("Api datas are", districts);
             <h2>Personal Details</h2>
 
             <div className="form-group">
-              <label htmlFor="fullName">Full Name *</label>
+              <label htmlFor="fullName">F/C Owner Name *</label>
               <input
                 type="text"
                 id="fullName"

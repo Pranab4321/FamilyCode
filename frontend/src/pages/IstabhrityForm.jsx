@@ -380,7 +380,7 @@ setPersons(() => {
     <div className="family-info">
 
       <div className="family-info-item">
-        <span>Full Name</span>
+        <span>F/C Owner Name</span>
         <strong>{familyData.fullName}</strong>
       </div>
 
@@ -487,7 +487,7 @@ setPersons(() => {
 
               <div className="form-group">
                 <label htmlFor="fullName">
-                  Full Name
+                  Member Name
                 </label>
 
                 <input
