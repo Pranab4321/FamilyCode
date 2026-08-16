@@ -131,7 +131,7 @@ const generatePDF = () => {
     y += 6;
 
     doc.text(
-      `Village: ${familyData.village || ""}`,
+      `Village/City: ${familyData.village || ""}`,
       15,
       y
     );
@@ -393,7 +393,7 @@ setPersons(() => {
       </div>
 
       <div className="family-info-item">
-        <span>Village</span>
+        <span>Village/City</span>
         <strong>{familyData.village}</strong>
       </div>
 

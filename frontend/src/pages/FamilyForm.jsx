@@ -152,7 +152,7 @@ console.log("Api datas are", districts);
 
             <div className="address-grid">
               <div className="form-group">
-                <label htmlFor="village">Village *</label>
+                <label htmlFor="village">Village/City *</label>
                 <input
                   type="text"
                   id="village"
