@@ -70,6 +70,7 @@ const handlePincodeChange = async (e) => {
           district: "",
           state: "",
           city: "",
+          postOffice: "",
         }));
       }
 
@@ -174,8 +175,32 @@ console.log("Api datas are", districts);
                 />
               </div>
 
-              <div className="form-group">
-              <label htmlFor="district">District</label>
+              <div className="form-group pin-group">
+                <label htmlFor="pinCode">District *</label>
+                <input
+                  type="text"
+                  id="district"
+                  name="district"
+                  placeholder="Enter district name."
+                  required
+                />
+              </div>
+
+              <div className="form-group pin-group">
+                <label htmlFor="pinCode">Post Office *</label>
+                <input
+                  type="text"
+                  id="postOffice"
+                  name="postOffice"
+                  placeholder="Enter district name."
+                  required
+                />
+              </div>
+
+
+
+              {/* <div className="form-group">
+              <label htmlFor="district">District *</label>
               <select
                 value={formDatas.district}
                 onChange={(e) =>
@@ -217,7 +242,7 @@ console.log("Api datas are", districts);
                     </option>
                   ))}
                 </select>
-              </div>
+              </div> */}
 
               <div className="form-group">
                 <label htmlFor="state">State *</label>
@@ -225,7 +250,6 @@ console.log("Api datas are", districts);
                   type="text"
                   id="state"
                   name="state"
-                  value={formDatas.state}
                   placeholder="Enter state"
                   required
                 />
