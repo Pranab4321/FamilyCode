@@ -10,6 +10,7 @@ const IstabhrityForm = () => {
 
 const [familyData, setFamilyData] = useState(null);
 const [showSuccess, setShowSuccess] = useState(false);
+const [newMember, setNewMember] = useState("");
 
 const [persons, setPersons] = useState(() => {
   const savedPersons = localStorage.getItem("persons");
@@ -116,7 +117,7 @@ const generatePDF = () => {
     doc.setFontSize(10);
 
     doc.text(
-      `Family Name: ${familyData.fullName || ""}`,
+      `F/C Owner Name: ${familyData.fullName || ""}`,
       15,
       y
     );
@@ -359,8 +360,6 @@ setPersons(() => {
   navigate("/");
 };
 
-
-
   return (
     <>
     <Navbar generatePDF={generatePDF}/>
@@ -452,8 +451,21 @@ setPersons(() => {
                   required
                 />
               </div>
+
+              <div className="form-group">
+              <label htmlFor="familyCode">Is a new Member? *</label>
+              <select
+                value={newMember}
+                onChange={(e) => setNewMember(e.target.value)}
+                required
+              >
+                <option value="">Select</option>
+                <option value="no">Old Member</option>
+                <option value="yes">New Member</option>
+              </select>
+            </div>
               
-              {selectedValue === "no" && (
+              {selectedValue === "no" || newMember === "yes" && (
                 <>
                 <div className="form-group">
                 <label htmlFor="dpSerialNo">
