@@ -515,7 +515,7 @@ setPersons(() => {
 
               <div className="form-group">
                 <label htmlFor="idNumber">
-                  Aadhaar / Voter ID No
+                  Aadhaar/Voter ID (Optional)
                 </label>
 
                 <input
@@ -523,7 +523,6 @@ setPersons(() => {
                   id="idNumber"
                   name="idNumber"
                   placeholder="Enter Aadhaar / Voter ID No"
-                  required
                 />
               </div>
 
