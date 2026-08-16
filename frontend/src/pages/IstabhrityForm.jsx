@@ -718,8 +718,8 @@ setPersons(() => {
       </div>
 
       <h2>Done!</h2>
-      <h2>Check Preview &</h2>
-      <h2>Fill up new details</h2>
+      <h2>Now You Can Add a New Member!</h2>
+      <h2>Or Go To Preview</h2>
       <p>
         Member added successfully.
       </p>
