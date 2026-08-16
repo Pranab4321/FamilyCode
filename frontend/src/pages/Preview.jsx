@@ -36,7 +36,7 @@ const Preview = () => {
 
         <div className="person-count">
           <span>{persons.length}</span>
-          <small>Persons</small>
+          <small>Entries</small>
         </div>
       </div>
 
